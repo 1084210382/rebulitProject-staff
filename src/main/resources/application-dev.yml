@@ -1,0 +1,53 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: manage
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    name: defaultDataSource
+    url: jdbc:mysql://rm-uf6t378ap6w4q09q1ko.mysql.rds.aliyuncs.com:3306/test?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&useSSL=false&allowMultiQueries=true
+    username: root
+    password: Liu123456
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initialSize: 5
+      minIdle: 5
+      maxActive: 20
+      maxWait: 600000
+      timeBetweenEvictionRunsMillis: 600000
+      minEvictableIdleTimeMillis: 3000000
+  redis:
+    host: localhost
+    port: 6379
+    timeout: 5000
+    jedis:
+      pool:
+        max-active: 8
+        max-idle: 8
+        max-wait: 1s
+        min-idle: 0
+  freemarker:
+    prefer-file-system-access: false
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+    prefer-ip-address: true
+    appname: manage
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:${server.port}/eureka/
+mybatis-plus:
+  mapper-locations: classpath*:templates/mapper/*.xml
+  configuration:
+    call-setters-on-nulls: true
+logging:
+  level:
+    com:
+      upc:
+        example:
+          dao:
+            debug
+

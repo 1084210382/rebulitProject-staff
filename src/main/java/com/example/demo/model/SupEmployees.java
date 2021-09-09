@@ -25,6 +25,7 @@ public class SupEmployees extends Model {
     /**
      * 用户id
      */
+
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 

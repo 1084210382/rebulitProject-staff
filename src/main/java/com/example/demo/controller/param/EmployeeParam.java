@@ -9,7 +9,7 @@ import java.util.List;
 
 @Data
 public class EmployeeParam {
-    @ApiModelProperty(value = "从业人员类型")
+    @ApiModelProperty(value = "从业人员类型(1从业人员，2作业人员，3作业人员)")
     @TableField("staff_type")
     private Integer staffType;
     @TableField("username")

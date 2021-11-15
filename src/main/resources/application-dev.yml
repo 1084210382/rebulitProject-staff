@@ -18,15 +18,17 @@ spring:
       timeBetweenEvictionRunsMillis: 600000
       minEvictableIdleTimeMillis: 3000000
   redis:
-    host: localhost
-    port: 6379
-    timeout: 5000
-    jedis:
-      pool:
-        max-active: 8
-        max-idle: 8
-        max-wait: 1s
-        min-idle: 0
+   database: 0
+   host: 118.190.200.207
+   port: 6380
+   timeout: 10000
+   lettuce:
+     pool:
+       max-active: 8
+       max-wait: -1
+       max-idle: 8
+       min-idle: 0
+   password: '@Qq1159939145'
   freemarker:
     prefer-file-system-access: false
 eureka:
@@ -40,14 +42,17 @@ eureka:
     service-url:
       defaultZone: http://localhost:${server.port}/eureka/
 mybatis-plus:
-  mapper-locations: classpath*:templates/mapper/*.xml
+  mapper-locations: classpath:templates/mapper/*.xml
   configuration:
     call-setters-on-nulls: true
 logging:
   level:
     com:
-      upc:
-        example:
-          dao:
-            debug
+      example:
+        demo:
+          trainExam:
+            dao:
+             debug
+    springfox:
+      error
 

@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 
-import com.example.demo.commonRequest.responsehandler.ResponseUtil;
+import com.example.demo.common.ResponseUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;

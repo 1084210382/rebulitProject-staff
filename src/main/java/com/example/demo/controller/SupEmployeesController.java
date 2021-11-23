@@ -1,9 +1,10 @@
 package com.example.demo.controller;
 
 
+import com.example.demo.common.ResponseUtil;
 import com.example.demo.controller.param.EmployeeParam;
 import com.example.demo.model.SupEmployees;
-import com.example.demo.commonRequest.responsehandler.ResponseUtil;
+
 import com.example.demo.service.ISupEmployeesService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;

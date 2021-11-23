@@ -11,7 +11,7 @@ import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
  * @author whn
  */
 
-@MapperScan("com.example.demo.dao")
+@MapperScan("com.example.demo.dao,com.example.demo.trainExam.dao")
 @EnableEurekaServer
 @EnableEurekaClient
 @SpringBootApplication

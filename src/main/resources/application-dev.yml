@@ -34,11 +34,12 @@ eureka:
     instance-id: ${spring.application.name}:${server.port}
     prefer-ip-address: true
     appname: manage
+    ip-address: 118.190.200.207
   client:
     fetch-registry: true
     register-with-eureka: true
     service-url:
-      defaultZone: http://localhost:${server.port}/eureka/
+      defaultZone: http://118.190.200.207:${server.port}/eureka/
 mybatis-plus:
   mapper-locations: classpath*:templates/mapper/*.xml
   configuration:

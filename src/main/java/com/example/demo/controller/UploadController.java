@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 
+import com.alibaba.fastjson.JSON;
 import com.example.demo.commonRequest.responsehandler.ResponseUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -10,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.*;
 
 /**
  * @author zcc
@@ -22,7 +23,7 @@ import java.util.Date;
 @CrossOrigin(allowCredentials = "true", allowedHeaders = "*")
 public class UploadController {
 
-    //实现图片上传
+    //实现图片上传   未使用
     @ApiOperation(value = "图片上传")
     @PostMapping(value = "/uploadPicture")
     @ResponseBody
@@ -31,8 +32,8 @@ public class UploadController {
         ResponseUtil.showMessage("200", "上传成功", name);
     }
 
-    //微信小程序图片上传
-    @ApiOperation(value = "人脸识别图片上传")
+    //平台端使用微信小程序图片上传
+    @ApiOperation(value = "平台人脸识别图片上传")
     @PostMapping(value = "/uploadFace")
     @ResponseBody
     public String uploadFace(@RequestParam("file") MultipartFile file) throws IOException {
@@ -40,13 +41,46 @@ public class UploadController {
         return realPath;
     }
 
-    //健康证图片上传
-    @ApiOperation(value = "健康证图片上传")
+    //平台端使用健康证图片上传
+    @ApiOperation(value = "平台健康证图片上传")
     @RequestMapping(value = "/uploadCaPicture", method = {RequestMethod.POST})
     @ResponseBody
     public String uploadCaPicture(@RequestParam("file") MultipartFile file) throws IOException {
         String realPath = "caPhoto/" + uploadFile(file, "caPhoto");
         return realPath;
+    }
+    //微信端微信小程序图片上传
+    @ApiOperation(value = "微信端小程序人脸识别图片上传")
+    @PostMapping(value = "/uploadMiniFace")
+    @ResponseBody
+    public String uploadMiniFace(@RequestParam("file") MultipartFile file) throws IOException {
+//        String realPath = "face/" + uploadFile(file, "face");
+
+        Map<String, Object> result = new HashMap<>();
+        result.put("name", file.getOriginalFilename());
+        result.put("url","face/"+ uploadFile(file, "face"));
+        result.put("fileFormat", file.getContentType());
+        List<Object> resultList = new ArrayList<>();
+        resultList.add(result);
+        String str = JSON.toJSON(resultList).toString();
+        return str;
+    }
+
+    //微信端健康证图片上传
+    @ApiOperation(value = "微信端健康证图片上传")
+    @RequestMapping(value = "/uploadMiniCaPicture", method = {RequestMethod.POST})
+    @ResponseBody
+    public String uploadMiniCaPicture(@RequestParam("file") MultipartFile file) throws IOException {
+//        String realPath = "caPhoto/" + uploadFile(file, "caPhoto");
+        Map<String, Object> result = new HashMap<>();
+        result.put("name", file.getOriginalFilename());
+        result.put("url","caPhoto/"+ uploadFile(file, "caPhoto"));
+        result.put("fileFormat", file.getContentType());
+        List<Object> resultList = new ArrayList<>();
+        resultList.add(result);
+        String str = JSON.toJSON(resultList).toString();
+        return str;
+
     }
 
     //    //实现视频上传
